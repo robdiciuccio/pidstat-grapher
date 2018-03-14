@@ -41,7 +41,7 @@ def find_pid_by_pattern(pattern):
     mepattern = ".*%s.*" % me
     pattern = ".*%s.*" % pattern
     for p in psutil.process_iter():
-        cmdline = " ".join(p.cmdline)
+        cmdline = p.name()
         if re.match(pattern, cmdline) and not re.match(mepattern, cmdline):
             return p.pid
     raise OSError
